@@ -273,26 +273,13 @@ namespace Bend.Util
          */
         public override void handlePOSTRequest(HttpProcessor p, StreamReader inputData)
         {
-            /*
             FileInfo fi = new FileInfo(p.http_url.Substring(1));
 
-            var t = File.OpenRead(basepath + fi.Name);
-            p.writeSuccess("text/plain");
-            p.outputStream.Flush();
-            t.CopyTo(p.outputStream.BaseStream);
-            p.outputStream.BaseStream.Flush();
+            var t = File.OpenWrite(basepath + fi.Name);
+            inputData.BaseStream.CopyTo(t);
             t.Close();
-            */
 
             Console.WriteLine("POST request: {0}", p.http_url);
-            string data = inputData.ReadToEnd();
-
-            p.writeSuccess();
-            p.outputStream.WriteLine("<html><body><h1>test server</h1>");
-            p.outputStream.WriteLine("<a href=/test>return</a><p>");
-            p.outputStream.WriteLine("postbody: <pre>{0}</pre>", data);
-
-
         }
     }
 
